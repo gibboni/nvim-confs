@@ -10,7 +10,6 @@ Plug ('catppuccin/nvim', {as= 'catppuccin'})
 Plug ('nvim-lualine/lualine.nvim')
 Plug ('kyazdani42/nvim-web-devicons')
 Plug ('nvim-zh/better-escape.vim')
---Plug ('Yggdroot/LeaderF')
 Plug ('rcarriga/nvim-notify')
 Plug ('neovim/nvim-lspconfig')
 Plug ('hrsh7th/nvim-cmp')
@@ -35,6 +34,13 @@ vim.opt.cmdheight=2
 vim.opt.showmode=false
 vim.cmd('colorscheme catppuccin')
 vim.opt.hidden=true
+
+-- hjkl movement in INSERT mode with Alt
+keymap("i", "<A-h>", "<C-o>h",default_opts)
+keymap("i", "<A-j>", "<C-o>j",default_opts)
+keymap("i", "<A-k>", "<C-o>k",default_opts)
+keymap("i", "<A-l>", "<C-o>l",default_opts)
+
 -- Paste over currently selected text without yanking it
 keymap("v", "p", '"_dP', default_opts)
 -- Move selected line / block of text in visual mode

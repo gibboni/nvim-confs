@@ -37,8 +37,8 @@ vim.opt.hidden=true
 
 -- hjkl movement in INSERT mode with Alt
 keymap("i", "<A-h>", "<C-o>h",default_opts)
-keymap("i", "<A-j>", "<C-o>j",default_opts)
-keymap("i", "<A-k>", "<C-o>k",default_opts)
+keymap("i", "<A-j>", "<C-o>gj",default_opts)
+keymap("i", "<A-k>", "<C-o>gk",default_opts)
 keymap("i", "<A-l>", "<C-o>l",default_opts)
 
 -- Paste over currently selected text without yanking it

@@ -65,7 +65,7 @@ keymap("v","<C-X>",'"+x',{ noremap = true })
 keymap("v","<C-C>",'"+y',{ noremap = true })
 
 vim.g.better_escape_interval = 200
-vim.g.better_escape_shortcut = 'jj'
+vim.g.better_escape_shortcut = 'jk'
 
 vim.notify = require("notify")
 require('lualine').setup()

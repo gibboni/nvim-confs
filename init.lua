@@ -73,7 +73,7 @@ require('lualine').setup()
 require('trouble').setup {
 	position = "bottom",
 	auto_open = true,
-	auto_close = true
+	auto_close = false
 }
 vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
   {silent = true, noremap = true}

@@ -71,7 +71,7 @@ vim.notify = require("notify")
 require('lualine').setup()
 -- Trouble setup + keys
 require('trouble').setup {
-	position = "bottom",
+	position = "right",
 	auto_open = true,
 	auto_close = false
 }

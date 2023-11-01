@@ -36,6 +36,9 @@ vim.opt.showmode=false
 vim.cmd('colorscheme catppuccin')
 vim.opt.hidden=true
 
+-- toggle for vimwiki list items
+keymap("n", "<C-l>", "<Plug>VimwikiToggleListItem",default_opts)
+
 -- hjkl movement in INSERT mode with Alt
 keymap("i", "<A-h>", "<C-o>h",default_opts)
 keymap("i", "<A-j>", "<C-o>gj",default_opts)

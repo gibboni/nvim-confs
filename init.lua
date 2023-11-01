@@ -19,6 +19,7 @@ Plug ('L3MON4D3/LuaSnip')
 Plug ('folke/lsp-colors.nvim')
 Plug ('folke/trouble.nvim')
 Plug ('farmergreg/vim-lastplace')
+Plug ('vimwiki/vimwiki')
 Plug.ends()
 
 vim.opt.termguicolors = true

@@ -4,7 +4,7 @@ local default_opts = { noremap = true, silent = true }
 local expr_opts = { noremap = true, expr = true, silent = true }
 
 -- toggle for vimwiki list items
-keymap("n", "<C-l>", "<Plug>VimwikiToggleListItem",default_opts)
+-- keymap("n", "<C-l>", "<Plug>VimwikiToggleListItem",default_opts)
 
 -- hjkl movement in INSERT mode with Alt
 keymap("i", "<A-h>", "<C-o>h",default_opts)

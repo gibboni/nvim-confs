@@ -3,8 +3,9 @@ local keymap = vim.api.nvim_set_keymap
 local default_opts = { noremap = true, silent = true }
 local expr_opts = { noremap = true, expr = true, silent = true }
 
--- toggle for vimwiki list items
-keymap("n", "<C-l>", "<Plug>VimwikiToggleListItem",default_opts)
+-- for better_escape plugin
+vim.g.better_escape_interval = 200
+vim.g.better_escape_shortcut = 'jk'
 
 -- hjkl movement in INSERT mode with Alt
 keymap("i", "<A-h>", "<C-o>h",default_opts)

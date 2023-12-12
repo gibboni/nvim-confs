@@ -1,8 +1,8 @@
 local Plug = require 'usermod.vimplug'
 local plugin_path = vim.fn.stdpath('data') .. '/plugged'
-local keymap = vim.api.nvim_set_keymap
-local default_opts = { noremap = true, silent = true }
-local expr_opts = { noremap = true, expr = true, silent = true }
+--local keymap = vim.api.nvim_set_keymap
+--local default_opts = { noremap = true, silent = true }
+--local expr_opts = { noremap = true, expr = true, silent = true }
 
 Plug.begin(plugin_path)
 Plug ('tpope/vim-fugitive')
@@ -19,7 +19,8 @@ Plug ('L3MON4D3/LuaSnip')
 Plug ('folke/lsp-colors.nvim')
 Plug ('folke/trouble.nvim')
 Plug ('farmergreg/vim-lastplace')
-Plug ('vimwiki/vimwiki')
+Plug ('nvim-treesitter/nvim-treesitter')
+Plug ('nvim-orgmode/orgmode')
 Plug.ends()
 
 vim.opt.termguicolors = true
@@ -37,9 +38,7 @@ vim.cmd('colorscheme catppuccin')
 vim.opt.hidden=true
 
 require('usermod.keymappings')
-
-vim.g.better_escape_interval = 200
-vim.g.better_escape_shortcut = 'jk'
+require('usermod.orgmodeconf')
 
 vim.notify = require("notify")
 require('lualine').setup()
@@ -49,21 +48,6 @@ require('trouble').setup {
 	auto_open = true,
 	auto_close = false
 }
--- require'lspconfig'.gopls.setup{}
-
--- Add additional capabilities supported by nvim-cmp
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-local lspconfig = require('lspconfig')
-
--- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'gopls','pylsp' }
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    -- on_attach = my_custom_on_attach,
-    capabilities = capabilities,
-  }
-end
 
 -- luasnip setup
 local luasnip = require 'luasnip'
@@ -72,43 +56,11 @@ local luasnip = require 'luasnip'
 vim.g.lastplace_ignore_buftype = "quickfix,nofile,help"
 vim.g.lastplace_ignore = "gitcommit,gitrebase,svn,hgcommit"
 
--- nvim-cmp setup
-local cmp = require 'cmp'
-cmp.setup {
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  mapping = cmp.mapping.preset.insert({
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-  }),
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-  },
-}
+-- lsp configs
+require('usermod.lspconfs')
+
+-- Neovide, if used
+if vim.g.neovide then
+	vim.o.guifont = "Iosevka Nerd Font:h14"
+end
+

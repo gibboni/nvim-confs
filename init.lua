@@ -2,9 +2,9 @@ local Plug = require 'usermod.vimplug'
 local plugin_path = vim.fn.stdpath('data') .. '/plugged'
 local ORGMODE_LOADED = false
 
-if file_exists(vim.fn.stdpath('data') .. '/LOAD_ORGMODE') then
-	Plug ('nvim-treesitter/nvim-treesitter')
-	Plug ('nvim-orgmode/orgmode')
+function file_exists(name)
+   local f=io.open(name,"r")
+   if f~=nil then io.close(f) return true else return false end
 end
 
 Plug.begin(plugin_path)

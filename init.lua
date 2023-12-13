@@ -1,8 +1,11 @@
 local Plug = require 'usermod.vimplug'
 local plugin_path = vim.fn.stdpath('data') .. '/plugged'
---local keymap = vim.api.nvim_set_keymap
---local default_opts = { noremap = true, silent = true }
---local expr_opts = { noremap = true, expr = true, silent = true }
+local ORGMODE_LOADED = false
+
+if file_exists(vim.fn.stdpath('data') .. '/LOAD_ORGMODE') then
+	Plug ('nvim-treesitter/nvim-treesitter')
+	Plug ('nvim-orgmode/orgmode')
+end
 
 Plug.begin(plugin_path)
 Plug ('tpope/vim-fugitive')
@@ -19,8 +22,11 @@ Plug ('L3MON4D3/LuaSnip')
 Plug ('folke/lsp-colors.nvim')
 Plug ('folke/trouble.nvim')
 Plug ('farmergreg/vim-lastplace')
-Plug ('nvim-treesitter/nvim-treesitter')
-Plug ('nvim-orgmode/orgmode')
+if file_exists(vim.fn.stdpath('data') .. '/LOAD_ORGMODE') then
+	Plug ('nvim-treesitter/nvim-treesitter')
+	Plug ('nvim-orgmode/orgmode')
+	ORGMODE_LOADED = true
+end
 Plug.ends()
 
 vim.opt.termguicolors = true
@@ -38,7 +44,10 @@ vim.cmd('colorscheme catppuccin')
 vim.opt.hidden=true
 
 require('usermod.keymappings')
-require('usermod.orgmodeconf')
+
+if ORGMODE_LOADED then
+	require('usermod.orgmodeconf')
+end
 
 vim.notify = require("notify")
 require('lualine').setup()

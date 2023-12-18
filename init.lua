@@ -27,7 +27,7 @@ if file_exists(vim.fn.stdpath('data') .. '/LOAD_ORGMODE') then
 	Plug ('nvim-orgmode/orgmode')
 	ORGMODE_LOADED = true
 end
-Plug ('mg979/vim-visual-multi', {'branch': 'master'})
+Plug ('mg979/vim-visual-multi')
 Plug.ends()
 
 vim.opt.termguicolors = true

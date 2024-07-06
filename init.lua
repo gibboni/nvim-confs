@@ -1,6 +1,5 @@
 local Plug = require 'usermod.vimplug'
 local plugin_path = vim.fn.stdpath('data') .. '/plugged'
-local ORGMODE_LOADED = false
 
 function file_exists(name)
    local f=io.open(name,"r")
@@ -22,11 +21,7 @@ Plug ('L3MON4D3/LuaSnip')
 Plug ('folke/lsp-colors.nvim')
 Plug ('folke/trouble.nvim')
 Plug ('farmergreg/vim-lastplace')
-if file_exists(vim.fn.stdpath('data') .. '/LOAD_ORGMODE') then
-	Plug ('nvim-treesitter/nvim-treesitter')
-	Plug ('nvim-orgmode/orgmode')
-	ORGMODE_LOADED = true
-end
+Plug ('nvim-treesitter/nvim-treesitter')
 Plug ('mg979/vim-visual-multi')
 Plug.ends()
 
@@ -45,10 +40,6 @@ vim.cmd('colorscheme catppuccin')
 vim.opt.hidden=true
 
 require('usermod.keymappings')
-
-if ORGMODE_LOADED then
-	require('usermod.orgmodeconf')
-end
 
 vim.notify = require("notify")
 require('lualine').setup()
